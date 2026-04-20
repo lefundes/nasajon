@@ -38,27 +38,7 @@ SUPABASE_FUNCTION_URL=https://mynxlubykylncinttggu.functions.supabase.co/ibge-su
 SUPABASE_ACCESS_TOKEN=
 ```
 
-## Execução
-
-Executar com envio para correção:
-
-```bash
-php artisan ibge:process --token=SEU_ACCESS_TOKEN
-```
-
-Executar sem envio:
-
-```bash
-php artisan ibge:process --no-submit
-```
-
-Executar com caminhos customizados:
-
-```bash
-php artisan ibge:process --input=storage/app/input.csv --output=storage/app/resultado.csv
-```
-
-## Como Executar e Validar
+## Execução e Validação
 
 ```bash
 composer install
@@ -67,12 +47,19 @@ php artisan ibge:process --token=SEU_ACCESS_TOKEN
 ./vendor/bin/phpunit
 ```
 
+Opções úteis de execução:
+
+```bash
+php artisan ibge:process --no-submit
+php artisan ibge:process --input=storage/app/input.csv --output=storage/app/resultado.csv
+```
+
 Validações esperadas:
 
 - `storage/app/resultado.csv` gerado com as colunas exigidas
 - `stats` exibido no console
 - resposta da Edge Function com `score` e `feedback` (quando executado com token)
-- suíte de testes passando (`OK`)
+- testes automatizados com `PHPUnit` passando (`OK`)
 
 ## Formato de Saída
 
@@ -90,9 +77,3 @@ No console, o comando imprime:
 
 - JSON de `stats`
 - resposta da Edge Function (`score`, `feedback`, componentes)
-
-## Testes
-
-```bash
-php artisan test
-```
